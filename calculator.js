@@ -72,7 +72,7 @@ document.getElementById("add-activity").addEventListener('click', function() {
     addActivity();
 });
 
-//isFloat function from the internet
+//isFloat function from https://stackoverflow.com/questions/3885817/how-do-i-check-that-a-number-is-float-or-integer
 function isFloat(n) {
     return n === +n && n !== (n|0);
 }
