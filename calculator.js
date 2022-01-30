@@ -61,7 +61,6 @@ function addActivity () {
     });
 
     //APPEND ACTIVITY TO TABLE
-    console.log(newActivity);
     document.getElementById("table").appendChild(newActivity);
 }
 
@@ -87,13 +86,15 @@ function weightedAverage(){
 
     for(let i = 0; i < activityCount; i++){
         if((isFloat(parseFloat(percentages[i].innerText)) && Number.isInteger(parseInt(weights[i].value))) || 
-                    parseFloat(percentages[i].innerText) === 1  && Number.isInteger(parseInt(weights[i].value))){
+                    parseFloat(percentages[i].innerText) === 1  && Number.isInteger(parseInt(weights[i].value)) ||
+            parseFloat(percentages[i].innerText)===0 && Number.isInteger(parseInt(weights[i].value))
+
+        ){
             average += parseFloat(parseFloat(percentages[i].innerText) * parseInt(weights[i].value));
             weightsTotal += parseInt(weights[i].value);
         }
     }
     let weightedAverage = average/weightsTotal *100;
-    //alert(`Weighted Average: ${(weightedAverage)}%`);
     document.getElementById("result-output").innerHTML=`Weighted Average: ${(weightedAverage)}%`;
 }
 //Add EventListener to Weighted Button
@@ -112,14 +113,14 @@ document.getElementById("mean").addEventListener('click', function(){
 
     for(let i = 0; i < activityCount; i++){
         if((isFloat(parseFloat(percentages[i].innerText)) && Number.isInteger(parseInt(weights[i].value))) || 
-        parseFloat(percentages[i].innerText) === 1  && Number.isInteger(parseInt(weights[i].value))){
+        parseFloat(percentages[i].innerText) === 1  && Number.isInteger(parseInt(weights[i].value)) ||
+        parseFloat(percentages[i].innerText)===0 && Number.isInteger(parseInt(weights[i].value))        
+        ){
             filledActivities++;
             meanAverage += parseFloat(percentages[i].innerText);
         }
-        //console.log(`${parseFloat(percentages[i].innerText)} * ${parseFloat(weights[i].value)}= ${parseFloat(percentages[i].innerText)*parseFloat(weights[i].value)}`);
     }
     meanAverage= meanAverage/filledActivities;
-    //alert(`Mean Average: ${parseFloat(meanAverage*100)}%`);
     document.getElementById("result-output").innerHTML=`Mean Average: ${parseFloat(meanAverage*100)}%`;
 });
 
